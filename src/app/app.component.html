@@ -1,0 +1,55 @@
+
+<app-header />
+
+<main>
+  <ul id="users" >
+
+    <!-- <li>
+      <app-user [id]="users[0].id" [avatar]="users[0].avatar" [name]="users[0].name" (select)="onSelectedUser($event)" />
+    </li>
+    <li>
+      <app-user [id]="users[1].id"  [avatar]="users[1].avatar" [name]="users[1].name" (select)="onSelectedUser($event)" />
+    </li>
+    <li>
+      <app-user [id]="users[2].id" [avatar]="users[2].avatar" [name]="users[2].name" (select)="onSelectedUser($event)" />
+    </li>
+    <li>
+      <app-user [id]="users[3].id"  [avatar]="users[3].avatar" [name]="users[3].name" (select)="onSelectedUser($event)" />
+    </li> -->
+    <li *ngFor="let user of users">
+      <app-user
+        [id]="user.id"
+        [avatar]="user.avatar"
+        [name]="user.name"
+        (select)="onSelectedUser($event)"
+      >
+    </app-user>
+    </li>
+
+
+  </ul>
+  <!-- @if (userName) {
+  <app-user-task  [name] = "userName.name"  />
+  }
+  @else
+  {
+    <p id="fallback">Selected user to see their task</p>
+
+  } -->
+  <div *ngIf="currentForm ==='form-tuyensinh'; else userTasks">
+    <app-analysic-form></app-analysic-form>
+
+  </div>
+
+  <ng-template #userTasks>
+  <div *ngIf="userName">
+    <app-user-task [userId]="userName.id" [name]="userName.name"></app-user-task>
+  </div>
+  <!-- <ng-template #noUserSelected>
+    <p id="fallback">Select a user to see their task</p>
+  </ng-template> -->
+  </ng-template>
+
+</main>
+<!-- <app-analysic-form></app-analysic-form> -->
+
