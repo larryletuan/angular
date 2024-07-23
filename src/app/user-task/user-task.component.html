@@ -1,0 +1,30 @@
+<div>
+  <header>
+  <h2>{{ name }}</h2>
+</header>
+<body>
+  <menu>
+    <button>
+      Add Tasks
+    </button>
+  </menu>
+
+  <ul>
+    @for(task of selectedUserTasks; track task.id)
+    {
+    <li>
+    <app-task [task]="task"></app-task>
+    </li>
+    }
+  </ul>
+
+  <!-- <div *ngIf="selectedUserTasks; else noTasks">
+    <h3>Tasks for {{getSummary()}}</h3>
+  </div>
+  <ng-template #noTasks>
+    <p>No tasks found for {{ name }}</p>
+  </ng-template> -->
+
+
+</body>
+</div>
