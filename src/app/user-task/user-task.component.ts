@@ -43,7 +43,14 @@ export class UserTaskComponent {
     }
     return "no summary found"
   }
+  onCompleteTask(id: string)
+  {
+    this.Tasks = this.Tasks.filter((task)=>task.id !== id);
+  }
+  checkTask(id: string) : boolean {
 
+    return this.Tasks.some(task => task.userId === id);
+  }
 
 
 

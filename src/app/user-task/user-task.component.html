@@ -8,22 +8,25 @@
       Add Tasks
     </button>
   </menu>
+  <article>
+    <ul>
+      <ng-container *ngIf="!checkTask(userId)">
+        <p id="fallback">no task</p>
+      </ng-container>
+      <ng-container *ngFor="let task of Tasks">
+        <li *ngIf="task.userId === userId">
+          <h2>{{task.title}}</h2>
+          <h2>{{task.id}}</h2>
+          <time>{{task.dueDate}}</time>
+          <p>{{task.summary}}</p>
+          <p class="actions">
+            <button (click)="onCompleteTask(task.id)">Complete</button>
+          </p>
+        </li>
+      </ng-container>
+    </ul>
+  </article>
 
-  <ul>
-    @for(task of selectedUserTasks; track task.id)
-    {
-    <li>
-    <app-task [task]="task"></app-task>
-    </li>
-    }
-  </ul>
-
-  <!-- <div *ngIf="selectedUserTasks; else noTasks">
-    <h3>Tasks for {{getSummary()}}</h3>
-  </div>
-  <ng-template #noTasks>
-    <p>No tasks found for {{ name }}</p>
-  </ng-template> -->
 
 
 </body>

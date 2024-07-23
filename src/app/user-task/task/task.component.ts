@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserTaskComponent } from '../user-task.component';
+import { dummyTasks } from '../taskcontent';
 
 interface Tasks
 {
@@ -23,6 +24,16 @@ interface Tasks
 export class TaskComponent {
 
  @Input() task!:Tasks;
+ @Output() complete = new EventEmitter<string>();
+ onCompleteTask()
+ {
+  this.complete.emit(this.task.id);
+ }
+ TasksNew = dummyTasks;
+ onCompleteTaskNew(id : string)
+ {
+  this.TasksNew = this.TasksNew.filter((task)=>task.id !== id);
+ }
 
 
 }
